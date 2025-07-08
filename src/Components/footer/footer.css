@@ -1,0 +1,79 @@
+
+.foot {
+    background: linear-gradient(180deg, #4d3bdb 0%, #9747ff 100%);
+    height: 460px;
+
+}
+
+.footupper {
+    height: 85%;
+    border-bottom: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.footupperbox {
+    width: 85%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.social {
+    width: 300px;
+    color: white;
+    font-size: 17px;
+}
+
+.social p {
+    line-height: 25px;
+    margin-bottom: 20px !important;
+
+}
+
+
+.contact {
+    margin-top: 20px;
+    display: flex;
+    color: white;
+    align-items: center;
+}
+
+.contactbox a {
+    color: white !important;
+}
+
+
+
+.footlower {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    align-items: center;
+    height: 15%;
+
+}
+
+.policy {
+    display: flex;
+    gap: 10px;
+    /* text-align: center; */
+    justify-content: center;
+
+}
+
+.policy a {
+    color: white !important;
+}
+
+.policy a:hover {
+    text-decoration: underline;
+
+
+
+}
+
+

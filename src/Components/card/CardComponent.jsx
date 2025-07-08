@@ -5,6 +5,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import icon from '../../assets/icon.png'
 
 const bull = (
   <Box
@@ -39,8 +40,38 @@ const card = (
 
 export default function CardComponent() {
   return (
-    <Box sx={{ minWidth: 275 }}>
-      <Card variant="outlined">{card}</Card>
-    </Box>
+        <Card elevation={2} sx={{ height: '250px', width: '518px' }}>
+                        <CardContent sx={{ height: '250px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                            <Box display="flex" justifyContent="space-between" alignItems="flex-start">
+                                <Box>
+                                    <Typography variant="subtitle2" color="text.secondary">
+                                        abc company
+                                    </Typography>
+                                    <Typography variant="subtitle1" fontWeight="bold">
+                                        software developer
+                                    </Typography>
+                                    <Typography variant="body2" color="primary">
+                                        no salary mentioned
+                                    </Typography>
+
+                                </Box>
+                                <Box component={'img'} src={icon} width={'45px'} />
+                            </Box>
+                            <Box display={'flex'} justifyContent="space-between" alignItems="center" mt={2}>
+                                <Typography variant="caption" color="text.secondary" mt={1}>
+                                    4 day ago
+                                </Typography>
+                                <Box>
+
+                                    <Typography variant="body1" fontSize={13}>34 views</Typography>
+                                    <Typography variant="body1" fontSize={13} color="text.secondary">
+                                        posted by <strong>username</strong>
+                                    </Typography>
+                                </Box>
+
+                            </Box>
+                        </CardContent>
+                    </Card>
+    
   );
 }

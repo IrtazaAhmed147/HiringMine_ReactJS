@@ -4,9 +4,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CardComponent from "../card/CardComponent";
 
-function SliderComponent({wallOfLove}) {
+function SliderComponent() {
      var settings = {
-    dots: !wallOfLove,
+    dots: true,
     infinite: true,
     speed:  300,
     slidesToShow: 3,
@@ -14,6 +14,8 @@ function SliderComponent({wallOfLove}) {
   };
   return (
    <Slider {...settings}>
+
+   
        <CardComponent />
        <CardComponent />
        <CardComponent />
@@ -21,7 +23,9 @@ function SliderComponent({wallOfLove}) {
        <CardComponent />
        <CardComponent />
        <CardComponent />
-       <CardComponent />
+       <CardComponent /> 
+       
+      
     </Slider>
   )
 }

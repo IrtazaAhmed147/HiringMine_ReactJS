@@ -1,7 +1,7 @@
 import React from 'react'
 import './jobcard.css'
 
-function JobCard() {
+function CategoriesCard() {
   return (
     <ul className='job-box'>
         <li className='childbox'>
@@ -17,4 +17,4 @@ function JobCard() {
   )
 }
 
-export default JobCard
+export default CategoriesCard

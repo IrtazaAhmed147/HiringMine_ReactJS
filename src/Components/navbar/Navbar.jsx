@@ -16,7 +16,17 @@ import logo from "../../assets/logo.png"
 import './navbar.css'
 import { Link } from 'react-router-dom';
 
-const pages = ['About Us', 'People', 'Resume Builder', 'Resume Checker', 'Jobs', 'Login', 'Join Now', 'Employee/Post Job'];
+const pages = [
+  { name: 'About Us', url: '/about-us' },
+  { name: 'People', url: '/people' },
+  { name: 'Resume Builder', url: '/resume-builder' },
+  { name: 'Resume Checker', url: '/resume-checker' },
+  { name: 'Jobs', url: '/jobs' },
+  { name: 'Login', url: '/login' },
+  { name: 'Join Now', url: '/signup' },
+  { name: 'Employee/Post Job', url: '/employee-post-job' }
+];
+// 'About Us', 'People', 'Resume Builder', 'Resume Checker', 'Jobs', 'Login', 'Join Now', 'Employee/Post Job'
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
@@ -89,9 +99,9 @@ function Navbar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography key={page}
+                                    <Typography key={page.name}
                                         component={Link}
-                                        to="/" sx={{ textAlign: 'center', color: 'black', textDecoration: 'none' }}>{page}</Typography>
+                                        to={page.url} sx={{ textAlign: 'center', color: 'black', textDecoration: 'none' }}>{page.name}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -114,13 +124,13 @@ function Navbar() {
                         {pages.map((page) => (
 
                             <Button
-                                key={page}
+                                key={page.name}
                                 component={Link}
-                                to="/"
+                                to={page.url}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'black', display: 'block' }}
                             >
-                                {page}
+                                {page.name}
                             </Button>
 
                         ))}
