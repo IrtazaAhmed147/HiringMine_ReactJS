@@ -1,18 +1,20 @@
 import React from 'react'
 import './jobcard.css'
+import { Link } from 'react-router-dom'
 
-function CategoriesCard() {
+function CategoriesCard({ postCounts, name }) {
+
   return (
     <ul className='job-box'>
-        <li className='childbox'>
+      <li className='childbox'>
 
-        <a href="#catergories">
-                         
-                         <img src="./assets/box.svg" alt="" />
-                         <h4 >dfgdf</h4>
-                         <p>43 Jobs</p>
-                        </a>
-        </li>
+        <Link to="/">
+
+          <img src="./assets/box.svg" alt="" />
+          <h4 >{name}</h4>
+          <p>{postCounts} Jobs</p>
+        </Link>
+      </li>
     </ul>
   )
 }
