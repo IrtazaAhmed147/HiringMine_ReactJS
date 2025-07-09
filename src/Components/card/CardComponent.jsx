@@ -49,18 +49,15 @@ export default function CardComponent({ companyName,
   createdAt
 }) {
 
-  console.log(user?.userName);
-  console.log(createdAt);
-
   const givenDate = new Date(createdAt)
-  const now = new Date ()
+  const now = new Date()
 
   const diffInMs = now - givenDate
   const daysAgo = Math.floor(diffInMs / (1000 * 60 * 60 * 24))
 
 
 
-  
+
   return (
     <Card elevation={2} sx={{ height: '250px', width: '518px' }}>
       <CardContent sx={{ height: '250px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -84,12 +81,12 @@ export default function CardComponent({ companyName,
         <Box display={'flex'} justifyContent="space-between" alignItems="center" mt={2}>
           <Box>
 
-          <Typography variant="body1" fontSize={13}  color="text.secondary" mt={1}>
-            {city}, {country}
-          </Typography>
-          <Typography variant="body1" fontSize={13} color="text.secondary" mt={1}>
-            {daysAgo} {daysAgo > 1 ? "days ago" : "day ago"}
-          </Typography>
+            <Typography variant="body1" fontSize={13} color="text.secondary" mt={1}>
+              {city}, {country}
+            </Typography>
+            <Typography variant="body1" fontSize={13} color="text.secondary" mt={1}>
+              {daysAgo} {daysAgo > 1 ? "days ago" : "day ago"}
+            </Typography>
           </Box>
           <Box>
 
