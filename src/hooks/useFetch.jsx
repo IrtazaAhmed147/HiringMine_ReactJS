@@ -1,6 +1,5 @@
-import createContext from ''
 import axios from "axios"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 
 const useFetch = (url) => {
@@ -19,7 +18,7 @@ const useFetch = (url) => {
             try {
 
                 const res = await axios.get(url)
-                setData(res)
+                setData(res.data)
                 console.log(res);
 
             } catch (error) {

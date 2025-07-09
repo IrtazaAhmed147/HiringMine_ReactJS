@@ -38,40 +38,72 @@ const card = (
   </React.Fragment>
 );
 
-export default function CardComponent() {
+export default function CardComponent({ companyName,
+  designation,
+  views,
+  appliedBy,
+  user,
+  payRangeEnd,
+  payRangeStart,
+  country, city,
+  createdAt
+}) {
+
+  console.log(user?.userName);
+  console.log(createdAt);
+
+  const givenDate = new Date(createdAt)
+  const now = new Date ()
+
+  const diffInMs = now - givenDate
+  const daysAgo = Math.floor(diffInMs / (1000 * 60 * 60 * 24))
+
+
+
+  
   return (
-        <Card elevation={2} sx={{ height: '250px', width: '518px' }}>
-                        <CardContent sx={{ height: '250px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                            <Box display="flex" justifyContent="space-between" alignItems="flex-start">
-                                <Box>
-                                    <Typography variant="subtitle2" color="text.secondary">
-                                        abc company
-                                    </Typography>
-                                    <Typography variant="subtitle1" fontWeight="bold">
-                                        software developer
-                                    </Typography>
-                                    <Typography variant="body2" color="primary">
-                                        no salary mentioned
-                                    </Typography>
+    <Card elevation={2} sx={{ height: '250px', width: '518px' }}>
+      <CardContent sx={{ height: '250px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <Box display="flex" justifyContent="space-between" alignItems="flex-start">
+          <Box>
+            <Typography variant="subtitle2" color="text.secondary">
+              {companyName ? `${companyName}` : "Anonymous"}
+            </Typography>
+            <Typography variant="subtitle1" fontWeight="bold">
+              {designation}
+            </Typography>
+            <Typography variant="body2" color="primary">
+              {payRangeStart && payRangeEnd ? `${payRangeStart} - ${payRangeEnd}` : 'No salary mentioned'}
 
-                                </Box>
-                                <Box component={'img'} src={icon} width={'45px'} />
-                            </Box>
-                            <Box display={'flex'} justifyContent="space-between" alignItems="center" mt={2}>
-                                <Typography variant="caption" color="text.secondary" mt={1}>
-                                    4 day ago
-                                </Typography>
-                                <Box>
 
-                                    <Typography variant="body1" fontSize={13}>34 views</Typography>
-                                    <Typography variant="body1" fontSize={13} color="text.secondary">
-                                        posted by <strong>username</strong>
-                                    </Typography>
-                                </Box>
+            </Typography>
 
-                            </Box>
-                        </CardContent>
-                    </Card>
-    
+          </Box>
+          <Box component={'img'} src={icon} width={'45px'} />
+        </Box>
+        <Box display={'flex'} justifyContent="space-between" alignItems="center" mt={2}>
+          <Box>
+
+          <Typography variant="body1" fontSize={13}  color="text.secondary" mt={1}>
+            {city}, {country}
+          </Typography>
+          <Typography variant="body1" fontSize={13} color="text.secondary" mt={1}>
+            {daysAgo} {daysAgo > 1 ? "days ago" : "day ago"}
+          </Typography>
+          </Box>
+          <Box>
+
+            <Typography variant="body1" fontSize={13}>{views} views</Typography>
+            {user?.userName && (
+              <Typography variant="body1" fontSize={13} color="text.secondary">
+                posted by <strong>{user.userName}</strong>
+              </Typography>
+            )}
+          </Box>
+
+        </Box>
+      </CardContent>
+    </Card>
+
   );
 }
