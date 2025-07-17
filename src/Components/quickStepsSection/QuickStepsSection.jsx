@@ -1,10 +1,12 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
 import QuickAccessCard from '../card/QuickAccessCard'
+import { useSelector } from 'react-redux';
 
 function QuickStepsSection() {
 
 
+    const { theme } = useSelector((state) => state.theme)
     
     const cardData = [
         {
@@ -32,15 +34,15 @@ function QuickStepsSection() {
     return (
 
         <>
-            <Typography variant='h1' fontSize={60} fontWeight='bold' textAlign='center'>
+            <Typography  sx={{color: theme === 'dark'? 'white':'black'}} marginTop={'30px'} variant='h1' fontSize={60} fontWeight='bold' textAlign='center'>
                 Get Hired In 4
                 <span style={{ color: '#6851ff' }}> Quick Easy Steps</span>
             </Typography>
-            <Typography component={'p'} fontSize={25} textAlign={'center'}>The quickest and the most effective way to get hired by the top firm.</Typography>
+            <Typography  sx={{color: theme === 'dark'? 'white':'black'}}  marginBottom={'30px'}  component={'p'} fontSize={25} textAlign={'center'}>The quickest and the most effective way to get hired by the top firm.</Typography>
             <Box width={'100%'} sx={{ display: 'flex', gap: '10px', flexWrap: 'wrap', justifyContent: 'center' }}>
                 {cardData.map((data, i) => (
 
-                    <QuickAccessCard key={i} name={data.name} icon={data.icon} description={data.description} />
+                    <QuickAccessCard theme={theme} key={i} name={data.name} icon={data.icon} description={data.description} />
                 ))}
 
 

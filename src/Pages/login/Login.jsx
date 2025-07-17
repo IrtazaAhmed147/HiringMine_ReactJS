@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   Box,
   Button,
@@ -15,39 +15,64 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { useState } from 'react';
 import logo from '../../assets/logo.png'
+import useFetch from '../../hooks/useFetch.jsx'
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import SwitchCom from '../../Components/switch/SwitchCom.jsx';
+import { Link } from 'react-router-dom';
 
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
 
+  const username = useRef('')
+  const password = useRef('')
+
+
+
+  const { theme } = useSelector((state) => state.theme)
   const handleTogglePassword = () => {
     setShowPassword((prev) => !prev);
   };
+
+  const handleClick = async () => {
+    console.log(username.current);
+    console.log(password.current);
+
+    try {
+      const response = await axios.post('https://hiringmine-railway-development.up.railway.app/api/auth/login', {
+        email: username.current,
+        password: password.current
+      })
+      console.log(response);
+
+    } catch (error) {
+      console.log(error);
+
+    }
+
+  }
 
   return (
     <Box
       sx={{
         minHeight: '100vh',
-        background: 'linear-gradient(to bottom, #fff, #ede9fe)',
+        backgroundColor: theme === 'dark' ? 'rgb(41, 41, 48)' : 'white',
+
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
       }}
     >
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 30,
-          left: 30,
-          fontWeight: 'bold',
-          fontSize: 32,
-          color: '#6c47ff',
-          fontFamily: 'Arial',
-        }}
-      >
-       <Box component={'img'} src={logo}/>
-      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '90%', margin: '20px' }}>
 
+      <Link to={'/'}>
+        <Box component={'img'} src={logo} width={'146px'} />
+      </Link>
+
+       <SwitchCom />
+
+      </Box>
       <Paper
         elevation={3}
         sx={{
@@ -56,22 +81,27 @@ function LoginPage() {
           maxWidth: 400,
           width: '100%',
           textAlign: 'center',
+        backgroundColor: theme === 'dark' ? 'rgb(37, 37 ,42)' : 'white',
+
         }}
       >
-        <Typography variant="h5" fontWeight="bold" gutterBottom>
+        <Typography variant="h5" fontWeight="bold" gutterBottom color={theme === 'dark' ? 'white': 'black'}>
           WELCOME BACK!
         </Typography>
-        <Typography variant="body2" mb={3}>
+        <Typography color={theme === 'dark' ? 'white': 'black'} variant="body2" mb={3}>
           Better jobs are waiting. Sign in and find your next move.
         </Typography>
 
         <TextField
+          onChange={(e) => username.current = e.target.value}
           label="Enter Email Address"
           fullWidth
           margin="normal"
           variant="outlined"
+          sx={{color: theme === 'dark' ? 'white': 'black'}}
         />
         <TextField
+          onChange={(e) => password.current = e.target.value}
           label="Enter Password"
           fullWidth
           margin="normal"
@@ -102,6 +132,7 @@ function LoginPage() {
               backgroundColor: '#5a3dcc',
             },
           }}
+          onClick={handleClick}
         >
           Login
         </Button>
@@ -116,7 +147,7 @@ function LoginPage() {
 
         <Button
           fullWidth
-          startIcon={<GoogleIcon color='red'/>}
+          startIcon={<GoogleIcon color='red' />}
           variant="outlined"
           sx={{
             textTransform: 'none',
@@ -138,9 +169,7 @@ function LoginPage() {
         </Typography>
       </Paper>
 
-      <Box position="absolute" top={20} right={20}>
-        <Switch defaultChecked />
-      </Box>
+
     </Box>
   );
 }

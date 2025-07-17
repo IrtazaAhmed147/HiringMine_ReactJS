@@ -2,22 +2,21 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import CardComponent from "../card/CardComponent";
-import useFetch from "../../hooks/useFetch.jsx";
+import WolCard from "../card/WolCard";
+import SmallCard from "../card/SmallCard";
+import useFetch from "../../hooks/useFetch";
 
-function SliderComponent() {
-
-
-  const { data, loading, error } = useFetch('https://hiringmine-railway-development.up.railway.app/api/jobAds/all?limit=10&pageNo=1&keyWord=&category=&isPending=false&skills=')
+function ProfileSlider() {
+  const { data, loading, error } = useFetch('https://hiringmine-railway-development.up.railway.app/api/users/home?sortBy=mostViewed')
   console.log(data);
 
   var settings = {
     dots: true,
     infinite: true,
     speed: 300,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
-      responsive: [
+    responsive: [
       {
         breakpoint: 1024,
         settings: {
@@ -48,18 +47,13 @@ function SliderComponent() {
 
 
   return (
-    <>
-      {loading && "loading"}
-      <Slider {...settings}>
-        {data && data?.data?.map((detail,i) => (
-          <CardComponent key={i} {...detail} slider={true} />
-        ))}
+    <Slider {...settings}>
+      {data && data.data?.map((detail) => (
+        <SmallCard {...detail} />
+      ))}
 
-
-
-      </Slider>
-    </>
+    </Slider>
   )
 }
 
-export default SliderComponent
+export default ProfileSlider

@@ -15,21 +15,25 @@ import AdbIcon from '@mui/icons-material/Adb';
 import logo from "../../assets/logo.png"
 import './navbar.css'
 import { Link } from 'react-router-dom';
+import SwitchCom from '../switch/SwitchCom.jsx';
+import { useSelector } from 'react-redux';
 
 const pages = [
-  { name: 'About Us', url: '/about-us' },
-  { name: 'People', url: '/people' },
-  { name: 'Resume Builder', url: '/resume-builder' },
-  { name: 'Resume Checker', url: '/resume-checker' },
-  { name: 'Jobs', url: '/jobs' },
-  { name: 'Login', url: '/login' },
-  { name: 'Join Now', url: '/signup' },
-  { name: 'Employee/Post Job', url: '/employee-post-job' }
+    { name: 'About Us', url: '/about-us' },
+    { name: 'People', url: '/people' },
+    { name: 'Resume Builder', url: '/resume-builder' },
+    { name: 'Resume Checker', url: '/resume-checker' },
+    { name: 'Jobs', url: '/jobs' },
+    { name: 'Login', url: '/login' },
+    { name: 'Join Now', url: '/signup' },
+    { name: 'Employee/Post Job', url: '/employee-post-job' }
 ];
 // 'About Us', 'People', 'Resume Builder', 'Resume Checker', 'Jobs', 'Login', 'Join Now', 'Employee/Post Job'
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
+
+    const { theme } = useSelector((state) => state.theme)
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -50,8 +54,10 @@ function Navbar() {
 
     return (
         <AppBar position="static" sx={{
-            backgroundColor: 'white',
-            color: 'black'
+            backgroundImage:
+                theme === 'dark' && 'linear-gradient(rgb(33, 33, 38) 0%, rgb(33, 33, 38) 69.79%, rgb(33, 33, 38) 99.99%, rgb(33, 33, 38) 100%)',
+            backgroundColor: theme === 'light' && 'white',
+            color: theme === 'dark' ? 'white' : 'black',
         }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
@@ -62,8 +68,8 @@ function Navbar() {
                             src={logo}
                             alt="Example"
                             sx={{
-                                width: '186px',
-                                height: '36px',
+                                width: '146px',
+                                height: '30px',
                                 display: { xs: 'none', md: 'flex' }
                             }}
                         />
@@ -95,18 +101,19 @@ function Navbar() {
                             }}
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
-                            sx={{ display: { xs: 'block', md: 'none' } }}
+                            sx={{ display: { xs: 'block', md: 'none' }, padding: '0px'  }}
+                            
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography key={page.name}
+                            {pages.map((page,i) => (
+                                <MenuItem key={i} onClick={handleCloseNavMenu} sx={{backgroundColor: theme === 'dark' ? 'rgb(41, 41, 48)' : 'white'}}>
+                                    <Typography
                                         component={Link}
-                                        to={page.url} sx={{ textAlign: 'center', color: 'black', textDecoration: 'none' }}>{page.name}</Typography>
+                                        to={page.url} sx={{ textAlign: 'center', color:  theme === 'dark' ? 'white' : 'black', textDecoration: 'none' }}>{page.name}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
-
+ 
                     {/* window */}
                     <Link to={'/'}>
                         <Box
@@ -114,13 +121,13 @@ function Navbar() {
                             src={logo}
                             alt="Example"
                             sx={{
-                                width: '186px',
-                                height: '36px',
+                                width: '146px',
+                                height: '30px',
                                 display: { xs: 'flex', md: 'none' }
                             }}
                         />
                     </Link>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
                         {pages.map((page) => (
 
                             <Button
@@ -128,7 +135,7 @@ function Navbar() {
                                 component={Link}
                                 to={page.url}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'black', display: 'block' }}
+                                sx={{ my: 2,fontSize: {lg:'16px'},minWidth: 'auto',padding: '2px 8px',textTransform: 'none', color:  theme === 'dark' ? 'white' : 'black', display: 'block' }}
                             >
                                 {page.name}
                             </Button>
@@ -136,7 +143,7 @@ function Navbar() {
                         ))}
                     </Box>
 
-
+                    <SwitchCom />
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
@@ -145,7 +152,7 @@ function Navbar() {
                             </IconButton>
                         </Tooltip>
                         <Menu
-                            sx={{ mt: '45px' }}
+                            sx={{ mt: '45px', backgroundColor: 'blue' }}
                             id="menu-appbar"
                             anchorEl={anchorElUser}
                             anchorOrigin={{

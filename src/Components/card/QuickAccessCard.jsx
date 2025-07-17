@@ -11,7 +11,7 @@ const iconMap = {
   WorkOutlineIcon: <WorkOutlineIcon sx={{ fontSize: 30, color: "#6c5ce7" }} />
 };
 
-const QuickAccessCard = ({name, icon, description}) => {
+const QuickAccessCard = ({name, icon, description, theme}) => {
   return (
     <Card
       sx={{
@@ -19,9 +19,9 @@ const QuickAccessCard = ({name, icon, description}) => {
         borderRadius: 4,
         textAlign: 'center',
         boxShadow: 3,
-        background: 'linear-gradient(to bottom, #f0f3ff, #ffffff)',
         py: 4,
         px: 2,
+        backgroundColor: theme === 'dark' && 'rgb(41, 41, 48)', background: theme === 'light' &&  'linear-gradient(180deg, #edebff, hsla(0, 0%, 100%, 0))'
       }}
     >
       <CardContent>
@@ -37,7 +37,7 @@ const QuickAccessCard = ({name, icon, description}) => {
         >
           {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color={theme === 'dark' ? 'white' : 'black'}>
           {description}
         </Typography>
       </CardContent>

@@ -9,13 +9,15 @@ function SmallCard({ userName,
   lastName,
   profilePic,
   jobTitle }) {
+
+    
   return (
 
     <>
       <div className='highProfileBox '>
 
         <div className="highProfileImage">
-          <img  src={profilePic} alt="" />
+          <img src={profilePic || 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg'} alt="" />
         </div>
         <div>
           <p className="small" style={{
@@ -25,12 +27,14 @@ function SmallCard({ userName,
             color: 'gray'
           }}>{lastName}</p>
           <p className="small" href="#" style={{
-            color: 'gray !important'
+            color: 'gray !important',
+            display:'flex',
+            alignItems:'center'
           }}>View Profile <ArrowRightAltIcon /></p>
         </div>
 
         <Box height='30px' className="highProfileImage" >
-          {/* <img src="./assets/icon.png" alt="" /> */}
+         
           <img src={icon} alt="" />
 
         </Box>

@@ -1,20 +1,11 @@
-job-box {
-    width: 100%;
-    align-items: center;
-    margin-bottom: 12px;
-    justify-content: center;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
 
-.job-box li {
+ li {
     width: 270px;
     padding: 20px;
 
 }
 
-.job-box a {
+ .a {
     width: 100%;
     height: 100%;
     display: flex;
@@ -22,22 +13,13 @@ job-box {
     justify-content: center;
     align-items: center;
     gap: 5px;
-}
-
-
-.job-box h4 {
-    color: #4d3bdb;
-}
-
-
-.job-box p {
-    color: rgb(108, 108, 108);
+    text-decoration: none;
 }
 
 .childbox {
-    width: 300px;
+    width: 276px;
     height: 220px;
-    background: linear-gradient(180deg, #edebff, hsla(0, 0%, 100%, 0));
+    /* background: ; */
     box-shadow: 0 4px 40px #bdb2ff3d;
     border-radius: 24px;
     border: 2px solid white;
@@ -50,4 +32,5 @@ job-box {
     gap: 10px;
     background-color: transparent;
     color: #6453e0;
+    justify-content: center;
 }
