@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CardComponent from "../card/CardComponent";
-import useFetch from "../../hooks/useFetch.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import {  fetchJobsSlider } from "../../redux/jobsSlice.js";
 
 function SliderComponent() {
 
-
-  const { data, loading, error } = useFetch('https://hiringmine-railway-development.up.railway.app/api/jobAds/all?limit=10&pageNo=1&keyWord=&category=&isPending=false&skills=')
-  console.log(data);
+  const dispatch = useDispatch()
+  const { allJobs,  isLoading } = useSelector((state) => state.jobs);
+  
+  useEffect(() => {
+    dispatch(fetchJobsSlider());
+  }, []);
 
   var settings = {
     dots: true,
@@ -17,7 +21,7 @@ function SliderComponent() {
     speed: 300,
     slidesToShow: 3,
     slidesToScroll: 1,
-      responsive: [
+    responsive: [
       {
         breakpoint: 1024,
         settings: {
@@ -49,9 +53,9 @@ function SliderComponent() {
 
   return (
     <>
-      {loading && "loading"}
+      {isLoading && "loading"}
       <Slider {...settings}>
-        {data && data?.data?.map((detail,i) => (
+        {allJobs && allJobs?.map((detail, i) => (
           <CardComponent key={i} {...detail} slider={true} />
         ))}
 

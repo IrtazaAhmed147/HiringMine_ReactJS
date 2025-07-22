@@ -135,7 +135,7 @@ function Navbar() {
                                 component={Link}
                                 to={page.url}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2,fontSize: {lg:'16px'},minWidth: 'auto',padding: '2px 8px',textTransform: 'none', color:  theme === 'dark' ? 'white' : 'black', display: 'block' }}
+                                sx={{ my: 2,fontSize: {md: '12px',lg:'16px'},minWidth: 'auto',padding: '2px 0px', paddingRight: '8px',textTransform: 'none', color:  theme === 'dark' ? 'white' : 'black', display: 'block' }}
                             >
                                 {page.name}
                             </Button>
@@ -148,7 +148,7 @@ function Navbar() {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar src="/broken-image.jpg" />
                             </IconButton>
                         </Tooltip>
                         <Menu

@@ -38,15 +38,15 @@ function Home() {
 
 
                 <Box sx={{
-                    width: "60%",
+                    width: {xs:"90%", sm: '80%',md: '70%'},
                     margin: "auto",
 
 
                 }}
                     className='homeContainer'>
-                    <Typography className='heading' marginTop={"40px"} variant="h1">Dig. Apply Prepare Your Future</Typography>
+                    <Typography sx={{fontSize:{xs: '40px', sm:'70px'}}}  className='heading' marginTop={"40px"} variant="h1">Dig. Apply Prepare Your Future</Typography>
                     <Typography fontSize={17} sx={{ color: theme === 'dark' ? 'white' : 'black' }} textAlign='center' component="p">Hiring Mine connects employer and job seekers, where employers are the source of the resources and the job seeker can find and apply for their targeted job.</Typography>
-                    <SearchBar />
+                    <SearchBar theme={theme}/>
 
                     <button className='findJobBtn'>
                         <Link to={'/'}>
@@ -61,7 +61,7 @@ function Home() {
                     </Box>
                 </Box>
 
-                <Box width={"100%"} component={'img'} src={poster} />
+                <Box width={"100%"} sx={{display: {sm : 'none',md: 'block', xs:'none'}}} component={'img'} src={poster} />
 
 
                 <HJobSection />
@@ -70,7 +70,7 @@ function Home() {
                     <span style={{ color: '#6851ff' }}>The Wall </span>
                     of Love</Typography>
 
-                <Box width={'80%'} margin={'auto'} sx={{ display: 'flex', gap: '10px',flexWrap:'wrap' }}>
+                <Box width={{sm:'90%', md:'90%', xs: '90%'}} margin={'auto'} sx={{ display: 'flex', gap: '10px',flexWrap:'wrap',justifyContent: 'center' }}>
 
 
 
@@ -84,7 +84,7 @@ function Home() {
                 <QuickStepsSection theme={theme}/>
 
 
-                <Typography variant='h1' fontWeight='bold' marginTop={'30px'} textAlign='center' fontSize={60}>
+                <Typography variant='h1' fontWeight='bold' sx={{ color: theme === 'dark' ? 'white' : 'black',margin:'30px 10px 0px 10px' }} textAlign='center' fontSize={60}>
                     Find Your Dream Job
                     <span style={{ color: '#6851ff' }}> Super Fast Ever.</span>
                 </Typography>

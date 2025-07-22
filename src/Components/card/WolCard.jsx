@@ -4,8 +4,8 @@ import Image from '../../assets/feedback.jpeg'; // or use <img> tag if not using
 
 const WolCard = () => {
   return (
-    <Card sx={{ maxWidth: 400, borderRadius: 3, boxShadow: 3 }}>
-      <CardContent>
+    <Card sx={{ width: {sm:'250px', md:'300px'}, borderRadius: 3, boxShadow: 3 }}>
+      <CardContent sx={{padding: '10px', paddingBottom: '10px !important'}}>
         <Box display="flex" alignItems="center" mb={1}>
           <Avatar sx={{ mr: 2 }}>A</Avatar>
           <Box>

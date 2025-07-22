@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import WolCard from "../card/WolCard";
 import SmallCard from "../card/SmallCard";
-import useFetch from "../../hooks/useFetch";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProfileSlider } from "../../redux/profilesSlice";
 
 function ProfileSlider() {
-  const { data, loading, error } = useFetch('https://hiringmine-railway-development.up.railway.app/api/users/home?sortBy=mostViewed')
-  console.log(data);
+  const dispatch = useDispatch()
+  const { allProfiles, isLoading } = useSelector((state) => state.profile);
+
+
+  useEffect(() => {
+    dispatch(fetchProfileSlider());
+  }, []);
+
 
   var settings = {
     dots: true,
@@ -48,7 +54,7 @@ function ProfileSlider() {
 
   return (
     <Slider {...settings}>
-      {data && data.data?.map((detail) => (
+      {!isLoading && allProfiles?.map((detail) => (
         <SmallCard {...detail} />
       ))}
 

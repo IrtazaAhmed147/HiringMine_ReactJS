@@ -15,7 +15,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { useState } from 'react';
 import logo from '../../assets/logo.png'
-import useFetch from '../../hooks/useFetch.jsx'
+// import useFetch from '../../hooks/useFetch.jsx'
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import SwitchCom from '../../Components/switch/SwitchCom.jsx';
@@ -23,6 +23,7 @@ import { Link } from 'react-router-dom';
 
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(null)
 
   const username = useRef('')
   const password = useRef('')
@@ -35,19 +36,16 @@ function LoginPage() {
   };
 
   const handleClick = async () => {
-    console.log(username.current);
-    console.log(password.current);
-
+    setError(null)
     try {
       const response = await axios.post('https://hiringmine-railway-development.up.railway.app/api/auth/login', {
         email: username.current,
         password: password.current
       })
-      console.log(response);
 
     } catch (error) {
       console.log(error);
-
+      setError(error.response.data.message)
     }
 
   }
@@ -117,7 +115,8 @@ function LoginPage() {
             ),
           }}
         />
-
+        {error && <p>{error}</p>}
+  
         <Button
           fullWidth
           variant="contained"
@@ -164,8 +163,12 @@ function LoginPage() {
         </Button>
 
         <Typography mt={3}>
-          Don’t have an account?{' '}
-          <span style={{ color: '#6c47ff', cursor: 'pointer' }}>Join Now</span>
+          Don't have an account?{' '}
+          <span style={{ color: '#6c47ff', cursor: 'pointer' }}>
+            <Link to={'/signup'}>
+            Join Now
+            </Link>
+            </span>
         </Typography>
       </Paper>
 

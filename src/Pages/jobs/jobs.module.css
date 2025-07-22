@@ -9,3 +9,17 @@
     border: 1px solid gray;
     border-right: none;
 }
+.searchInput-res{
+    width: 80%;
+}
+
+.loader-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+.slick-slide{
+    width: auto !important;
+}

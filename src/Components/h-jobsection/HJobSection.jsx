@@ -9,7 +9,7 @@ function HJobSection() {
   const { theme } = useSelector((state) => state.theme)
   return (
     <>
-      <Typography sx={{ color: theme === 'dark' ? 'white' : 'black' }} marginTop={'30px'} marginBottom={'30px'} variant='h1' fontSize={60} fontWeight='bold' textAlign='center'>
+      <Typography sx={{ color: theme === 'dark' ? 'white' : 'black',margin:'30px 10px' }} variant='h1' fontSize={60} fontWeight='bold' textAlign='center'>
         <span style={{ color: '#6851ff' }}>Latest And Top </span>
         Job Openings</Typography>
 

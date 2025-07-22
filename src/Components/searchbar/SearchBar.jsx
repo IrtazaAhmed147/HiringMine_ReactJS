@@ -1,33 +1,20 @@
 import { Box, Button, IconButton, InputAdornment, inputBaseClasses, TextField } from '@mui/material'
 import React from 'react'
 import searchIcon from '../../assets/form img.png'
+import '../../Pages/home/home.css'
 
-function SearchBar() {
+function SearchBar({theme}) {
     return (
         <Box
-            component="form"
+            
             sx={{ display: 'flex', justifyContent: "center", width: "100%" }}
         >
-
-            <TextField
-                id="outlined-suffix-shrink"
-                label="Search By Role or Keyword"
-                variant="outlined"
-                sx={{
-                    width: '473px',
-                    '& .MuiOutlinedInput-root': {
-                        '& fieldset': {
-                            borderRight: 'none',
-                            borderColor: 'gray',
-                            borderRadius: '5px 0px 0px 5px'
-                        },
-                    },
-                }}
-
-            />
-            <Button variant="outlined" sx={{ borderColor: 'gray', borderLeft: 'none', borderRadius: '0px 5px 5px 0px' }}>
-                <Box component="img" src={searchIcon} />
-            </Button>
+               <form onSubmit={(e)=> e.preventDefault()}>
+                    <input className={"search-res search"}  style={{color: theme === 'dark' ? 'white': 'black', borderColor: theme === 'dark' ? 'gray': 'black'}}  type="search" placeholder="Search by Role or Keyword" required />
+                    <button className='submit' style={{borderColor: theme === 'dark' ? 'gray': 'black'}}>
+                        <img src={searchIcon} alt="" />
+                    </button>
+                </form>
         </Box>
     )
 }

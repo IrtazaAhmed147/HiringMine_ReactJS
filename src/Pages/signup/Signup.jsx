@@ -23,7 +23,7 @@ import { useSelector } from 'react-redux';
 function Signup() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+    const [error, setError] = useState(null)
     const inputRefs = useRef({
         firstName: '',
         lastName: '',
@@ -32,11 +32,8 @@ function Signup() {
         password: '',
         confirmPassword: '',
     });
-    // https://hiringmine-railway-development.up.railway.app/api/auth/signup
 
     const handleClick = async () => {
-        console.log(inputRefs.current.email);
-        console.log(inputRefs.current.password);
 
         try {
             const response = await axios.post('https://hiringmine-railway-development.up.railway.app/api/auth/signup', {
@@ -48,22 +45,21 @@ function Signup() {
                 password: inputRefs.current.password,
                 cPassword: inputRefs.current.confirmPassword,
             })
-            console.log(response);
 
         } catch (error) {
             console.log(error);
-
+            setError(error.response.data.message)
         }
 
     }
 
-  const { theme } = useSelector((state) => state.theme)
+    const { theme } = useSelector((state) => state.theme)
 
     return (
         <Box
             sx={{
                 minHeight: '100vh',
-                        backgroundColor: theme === 'dark' ? 'rgb(41, 41, 48)' : 'white',
+                backgroundColor: theme === 'dark' ? 'rgb(41, 41, 48)' : 'white',
 
                 display: 'flex',
                 alignItems: 'center',
@@ -100,20 +96,76 @@ function Signup() {
                         maxWidth: 400,
                         width: '100%',
                         textAlign: 'center',
-                          backgroundColor: theme === 'dark' ? 'rgb(37, 37 ,42)' : 'white',
+                        backgroundColor: theme === 'dark' ? 'rgb(37, 37 ,42)' : 'white',
                     }}
                 >
-                    <Typography variant="h5" fontWeight="bold" gutterBottom color={theme === 'dark' ? 'white': 'black'}>
+                    <Typography variant="h5" fontWeight="bold" gutterBottom color={theme === 'dark' ? 'white' : 'black'}>
                         LET'S GET STARTED
                     </Typography>
-                    <Typography color={theme === 'dark' ? 'white': 'black'} variant="body2" mb={3}>
+                    <Typography color={theme === 'dark' ? 'white' : 'black'} variant="body2" mb={3}>
                         Create an account to get recommended jobs that match your resume and apply to multiple jobs in seconds!
                     </Typography>
 
-                    <TextField label="User Name" fullWidth margin="normal" variant="outlined" onChange={(e) => inputRefs.current.userName = e.target.value} />
-                    <TextField label="First Name" fullWidth margin="normal" variant="outlined" onChange={(e) => inputRefs.current.firstName = e.target.value} />
-                    <TextField label="last Name" fullWidth margin="normal" variant="outlined" onChange={(e) => inputRefs.current.lastName = e.target.value} />
-                    <TextField label="Enter Email Address" fullWidth margin="normal" variant="outlined" onChange={(e) => inputRefs.current.email = e.target.value} />
+                    <TextField label="User Name" fullWidth margin="normal" variant="outlined" onChange={(e) => inputRefs.current.userName = e.target.value}    sx={{
+                            input: { color: theme === 'dark' ? 'white' : 'black' },
+                            '& label': { color: theme === 'dark' ? 'white' : 'black' },
+                            '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                                '&.Mui-focused fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                            },
+                        }} />
+                    <TextField label="First Name" fullWidth margin="normal" variant="outlined" onChange={(e) => inputRefs.current.firstName = e.target.value}     sx={{
+                            input: { color: theme === 'dark' ? 'white' : 'black' },
+                            '& label': { color: theme === 'dark' ? 'white' : 'black' },
+                            '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                                '&.Mui-focused fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                            },
+                        }}/>
+                    <TextField label="last Name" fullWidth margin="normal" variant="outlined" onChange={(e) => inputRefs.current.lastName = e.target.value}    sx={{
+                            input: { color: theme === 'dark' ? 'white' : 'black' },
+                            '& label': { color: theme === 'dark' ? 'white' : 'black' },
+                            '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                                '&.Mui-focused fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                            },
+                        }} />
+                    <TextField label="Enter Email Address" fullWidth margin="normal" variant="outlined" onChange={(e) => inputRefs.current.email = e.target.value}     sx={{
+                            input: { color: theme === 'dark' ? 'white' : 'black' },
+                            '& label': { color: theme === 'dark' ? 'white' : 'black' },
+                            '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                                '&.Mui-focused fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                            },
+                        }}/>
 
                     <TextField onChange={(e) => inputRefs.current.password = e.target.value}
                         label="Enter Password"
@@ -129,6 +181,21 @@ function Signup() {
                                     </IconButton>
                                 </InputAdornment>
                             ),
+                        }}
+                           sx={{
+                            input: { color: theme === 'dark' ? 'white' : 'black' },
+                            '& label': { color: theme === 'dark' ? 'white' : 'black' },
+                            '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                                '&.Mui-focused fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                            },
                         }}
                     />
 
@@ -148,9 +215,24 @@ function Signup() {
                                 </InputAdornment>
                             ),
                         }}
+                        sx={{
+                            input: { color: theme === 'dark' ? 'white' : 'black' },
+                            '& label': { color: theme === 'dark' ? 'white' : 'black' },
+                            '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                                '&.Mui-focused fieldset': {
+                                    borderColor: theme === 'dark' ? 'white' : 'black',
+                                },
+                            },
+                        }}
                     />
-
-                    <Typography color={theme === 'dark' ? 'white': 'black'} variant="caption" display="block" mt={2} mb={2}>
+                    {error && <p>{error}</p>}
+                    <Typography color={theme === 'dark' ? 'white' : 'black'} variant="caption" display="block" mt={2} mb={2}>
                         By clicking Agree & Join, you agree to the Hiring Mine User Agreement, Privacy Policy, and Cookie Policy.
                     </Typography>
 
@@ -172,7 +254,7 @@ function Signup() {
                         Agree & Join
                     </Button>
 
-                    <Divider sx={{ my: 3,color: theme ==='dark'&& 'white' }}>or</Divider>
+                    <Divider sx={{ my: 3, color: theme === 'dark' && 'white' }}>or</Divider>
 
                     <Button
                         fullWidth
@@ -191,7 +273,7 @@ function Signup() {
                     >
                         Sign In With Google
                     </Button>
-                    <Typography color={theme === 'dark' ? 'white': 'black'}>
+                    <Typography color={theme === 'dark' ? 'white' : 'black'}>
                         Already on Hiring Mine ?
                         <Link to={'/login'}>
                             Login

@@ -62,7 +62,7 @@ export default function CardComponent({ companyName,
 
     const { theme } = useSelector((state) => state.theme)
   return (
-    <Card elevation={2} sx={{ height: '250px', width:  slider ? "96%": {sm: '47%', md: '42%'}, padding: '5px', backgroundColor: theme === 'dark' ? 'rgb(41, 41, 48)': 'white' , color: theme === 'dark' && 'white'}}>
+    <Card elevation={2} sx={{ height: '250px', width:  slider ? "96% !important": {xs: '95% !important',sm: '47% !important', md: '42% !important'}, padding: '5px', backgroundColor: theme === 'dark' ? 'rgb(41, 41, 48)': 'white' , color: theme === 'dark' && 'white'}}>
       <CardContent sx={{ height: '250px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <Box display="flex" justifyContent="space-between" alignItems="flex-start">
           <Box>
