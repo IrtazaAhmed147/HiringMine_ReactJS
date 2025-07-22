@@ -1,22 +1,17 @@
 import {
-    Box, TextField, InputAdornment, IconButton, Button, MenuItem,
+    Box, Button,
     CircularProgress,
-    FormControl,
-    InputLabel,
-    Select
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import logo from '../../assets/logo.png'
 import CardComponent from '../../Components/card/CardComponent';
 import { useEffect, useRef, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import axios from 'axios';
 import SwitchCom from '../../Components/switch/SwitchCom.jsx';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { fetchJobs } from '../../redux/jobsSlice.js';
-import JobCategoriesSlider from '../../Components/slider/jobCategoriesSlider.jsx';
+import JobCategoriesSlider from '../../Components/slider/JobCategoriesSlider.jsx';
 import styles from './jobs.module.css'
 
 const filters = [
@@ -109,10 +104,10 @@ const Jobs = () => {
             {/* Top Header */}
             <Box display="flex" alignItems="center" justifyContent="space-between" flexWrap="wrap" gap={2}>
                 <Link to={'/'}>
-                    <Box  sx={{width: {sm:'200px', xs: '150px'}}} component={'img'} src={logo} />
+                    <Box sx={{ width: { sm: '200px', xs: '150px' } }} component={'img'} src={logo} />
                 </Link>
 
-                <Box sx={{ display: {md: 'flex', sm:'none', xs: 'none'}, gap: '20px' }}>
+                <Box sx={{ display: { md: 'flex', sm: 'none', xs: 'none' }, gap: '20px' }}>
 
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <input
@@ -134,7 +129,7 @@ const Jobs = () => {
 
 
 
-            <Box sx={{ display: {md: 'none', sm:'flex', xs:'flex'}, alignItems: 'center' }}>
+            <Box sx={{ display: { md: 'none', sm: 'flex', xs: 'flex' }, alignItems: 'center' }}>
                 <input
                     className={`${styles.searchInput} ${styles['searchInput-res']}`}
                     onChange={(e) => searchValue.current = e.target.value}
