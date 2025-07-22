@@ -39,7 +39,7 @@ function JobCategoriesSlider({ filters }) {
     };
     return (
         <>
-            <Box sx={{width: {xs: '98%',sm: '82%', md: '70%'}, margin: 'auto'}} className={styles.slider-container} >
+            <Box sx={{width: {xs: '98%',sm: '82%', md: '70%'}, margin: 'auto'}} className={styles['slider-container']} >
                 <Slider {...settings}>
                     {filters.map((filter, i) => (
 
